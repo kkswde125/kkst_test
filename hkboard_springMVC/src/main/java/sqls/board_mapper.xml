@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hk.board" >
+
+<select id="getAllList" resultType="HkBoardDto">
+	SELECT SEQ,ID,NAME,TITLE,CONTENT,REGDATE FROM BYUNGJUBOARD
+</select>
+
+<select id="getBoard" resultType="HkBoardDto" parameterType="int">
+	SELECT SEQ,ID,NAME,TITLE,CONTENT,REGDATE FROM BYUNGJUBOARD WHERE SEQ=#{seq}
+</select>
+
+<insert id="insertBoard" parameterType="HkBoardDto">
+	INSERT INTO BYUNGJUBOARD(SEQ,ID,NAME,TITLE,CONTENT,REGDATE)VALUES(BYUNGJUBOARD_SEQ.NEXTVAL,#{id},#{name},#{title},#{content},SYSDATE)
+</insert>
+
+<update id="updateBoard" parameterType="HkBoardDto">
+	UPDATE BYUNGJUBOARD SET TITLE=#{title},CONTENT=#{content},REGDATE=SYSDATE WHERE SEQ=#{seq}
+</update>
+<delete id="deleteBoard" parameterType="int">
+	DELETE FROM BYUNGJUBOARD WHERE SEQ=#{seq}
+</delete>
+
+
+
+</mapper>
